@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "127adc41-b41e-4bc5-9e6f-88ba7f58bda2",
+		"name": "Airline API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23215186"
+	},
+	"item": [
+		{
+			"name": "Read airline data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const jsonData = pm.responsejson();\r",
+							"var len = jsonData.length;\r",
+							"console.log (len)\r",
+							"\r",
+							"for(var i=0;i<len;i++)\r",
+							"{\r",
+							"     if(jsonData[i].country == \"paris\")\r",
+							"   {\r",
+							"      var countryid = jsonData[i].id;\r",
+							"      console.log (countryid) \r",
+							"      pm.environment.set(\"countryid\", countryid);\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/v1/airlines",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Airline data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 12876,\r\n    \"name\": \"Sri Lankan Airways\",\r\n    \"country\": \"Sri Lanka\",\r\n\"logo\":\"https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png\",\r\n    \"slogan\": \"From Sri Lanka\",\r\n    \"head_quaters\": \"Katunayake, Sri Lanka\",\r\n    \"website\": \"www.srilankaairways.com\",\r\n    \"established\": \"1990\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/v1/airlines ",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"airlines "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Airline by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/v1/airlines/:id ",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"airlines",
+						":id "
+					],
+					"variable": [
+						{
+							"key": "id ",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create passenger using data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"trips\": 250,\r\n    \"airline\": 5 }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/v1/passenger",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"passenger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete passenger by using id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/v1/passenger/:id ",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"passenger",
+						":id "
+					],
+					"variable": [
+						{
+							"key": "id ",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update passenger by id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"John Doe\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/v1/passenger/:id ",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"passenger",
+						":id "
+					],
+					"variable": [
+						{
+							"key": "id ",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update every detail of passenger",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"trips\": 500,\r\n    \"airline\": 8\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/v1/passenger/:id ",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"passenger",
+						":id "
+					],
+					"variable": [
+						{
+							"key": "id ",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read all passengers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/v1/passenger?page=0&size=10 ",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"passenger"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10 "
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
